@@ -7,27 +7,27 @@
 // Define agent details separately to avoid initialization errors
 const agentDetails = {
   /** @type {string} Agent's full name (e.g., "Mike Henry"). Used widely. */
-  name: "Arslan Ahmed",
+  name: "Mike Henry", // Resolved: Kept remote change
   /** @type {string} Agent's first name (e.g., "Mike"). Used in informal contexts. */
-  firstName: "Arslan",
+  firstName: "Mike", // Resolved: Kept remote change
   /** @type {string} Agent's professional title (e.g., "Brampton Realtor"). Used in copyright, potentially titles. */
-  title: "Mississauga Realtor",
+  title: "Brampton Realtor", // Resolved: Kept remote change
   /** @type {string} Agent's professional designation (e.g., "Real Estate Sales Representative", "Broker", "Realtor"). */
-  designation: "Real Estate Sales Representative",
+  designation: "Real Estate Sales Representative", // Resolved: Kept local addition
   /** @type {string} Primary city/town served (e.g., "Brampton"). Used in descriptions, titles. */
-  location: "Mississauga",
+  location: "Brampton", // Resolved: Kept remote change
   /** @type {string} Broader region served (if applicable, e.g., "Peel Region"). Used in FAQ. */
   region: "Peel Region",
   /** @type {number} Agent's years of experience. Used in About section, potentially counters. */
   experienceYears: 10,
   /** @type {string} Agent's primary contact phone number. Used in Footer, Contact forms/sidebars. */
-  phone: "416-655-4850", // Placeholder - Update with actual number
+  phone: "647-881-4044", // Resolved: Kept remote change
   /** @type {string} Agent's primary contact email address. Used in Footer, Contact forms/sidebars. */
-  email: "arslan@salesgenius.co", // Placeholder - Update with actual email
+  email: "mike.solditquick@gmail.com", // Resolved: Kept remote change
   /** @type {string} Agent's primary office address. */
-  address: "123 Main St, Mississauga, ON L5B 2V9", // Placeholder - Update with actual address
+  address: "276 DANFORTH AVENUE", // Resolved: Kept remote change
   /** @type {string} Name of the brokerage the agent is affiliated with. */
-  brokerageName: "REAL Broker",
+  brokerageName: "REAL Broker", // Resolved: Kept local addition
   /** @type {string} File path for the standard agent headshot. Relative to /public. */
   headshotImageSrc: "/images/agent/headshot.png", // Placeholder - Ensure image exists at this path
   /** @type {string} File path for the agent headshot with no background. Relative to /public. */
@@ -38,10 +38,10 @@ const agentDetails = {
    */
   socialLinks: [
     // Provide actual URLs for the agent's profiles
-    { name: "Facebook", url: "#", iconClass: "icon-fb" },
+    { name: "Facebook", url: "https://www.facebook.com/Mike.Henry.Realestate/", iconClass: "icon-fb" }, // Resolved: Kept remote change
     { name: "Twitter", url: "#", iconClass: "icon-X" },
     { name: "LinkedIn", url: "#", iconClass: "icon-linked" },
-    { name: "Instagram", url: "#", iconClass: "icon-ins" }
+    { name: "Instagram", url: "http://instagram.com/mike.henry.realestate", iconClass: "icon-ins" } // Resolved: Kept remote change
   ]
 };
 
@@ -78,7 +78,7 @@ export const siteContent = {
         /** @type {string} Main headline. Can include HTML spans for styling. (~5-10 words). */
         title: "Hero Section Headline", // Placeholder - Constructed dynamically in Hero6.jsx
         /** @type {string} Short introductory paragraph (~2-3 sentences / 150-250 chars). */
-        description: "Hero section introductory paragraph text goes here. Describe the agent's value proposition.", // Generic description
+        description: "Mission: To put you in the home of your dreams as quickly as possible!", // Resolved: Kept remote change
         /** @type {string} Text for the main call-to-action button (~2-4 words). */
         buttonText: "Learn How I Can Help",
         /** @type {{src: string, alt: string}} Small image next to hero text. `src` relative to /public. */
