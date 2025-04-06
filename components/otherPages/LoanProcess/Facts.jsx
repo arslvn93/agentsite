@@ -56,7 +56,7 @@ export default function Facts() {
                  {/* Counter 2: Years Experience */}
                  <div className="counter-item style-2">
                   <div className="count">
-                    <div className="icons"><i className="icon-calendar" /></div> {/* Example icon */}
+                    <div className="icons"><i className="icon-HouseLine" /></div> {/* Changed icon */}
                     <div className="counter-number">
                       <div className="odometer style-2 style-2-1"><OdometerComponent max={siteContent.agent.experienceYears} /></div>
                       <span className="sub plus">+</span>

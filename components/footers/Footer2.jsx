@@ -47,6 +47,17 @@ export default function Footer2({ parentClass = "" }) {
                   {/* Replaced Image with styled text */}
                   <span className="text-logo">{siteContent.agent.name}</span>
                 </Link>
+                {/* Added Brokerage Info */}
+                <div className="brokerage-info" style={{ marginTop: '5px' }}> {/* Added margin for spacing */}
+                  {/* Added Designation using text-color4 utility class */}
+                  <p className="text-3 text-color2" style={{ margin: 0, lineHeight: '1.4' }}> {/* Use text-color4 class */}
+                    {siteContent.agent.designation}
+                  </p>
+                  {/* Updated Brokerage Name (removed label, increased font size) */}
+                  <p className="text-3 text-color1" style={{ margin: 0, lineHeight: '1.4', fontSize: '1.1em' }}> {/* Increased font size slightly */}
+                    {siteContent.agent.brokerageName}
+                  </p>
+                </div>
               </div>
               <div className="wrap-contact-item style-1">
                 <div className="contact-item">
@@ -54,9 +65,9 @@ export default function Footer2({ parentClass = "" }) {
                     <i className="icon-location-6" />
                   </div>
                   <div className="content">
-                    <div className="title text-1">Address</div>
-                    <h6>
-                      <a href={`mailto:${siteContent.agent.email}`}>{siteContent.agent.email}</a>
+                    <div className="title text-1">Office Address</div>
+                    <h6 className="text_white"> {/* Added text_white class */}
+                      {siteContent.agent.address}
                     </h6>
                   </div>
                 </div>
@@ -76,7 +87,7 @@ export default function Footer2({ parentClass = "" }) {
                     <i className="icon-letter-2" />
                   </div>
                   <div className="content">
-                    <div className="title text-1">{/* Assuming "Need Help?" is better */}Need Help?</div>
+                    <div className="title text-1">{/* Assuming "Need Help?" is better */}Email Me</div>
                     <h6 className="fw-4">
                       <a href={`mailto:${siteContent.agent.email}`}>{siteContent.agent.email}</a>
                     </h6>
@@ -91,7 +102,7 @@ export default function Footer2({ parentClass = "" }) {
           <div className="footer-bottom">
             <p>
               Copyright © {new Date().getFullYear()}{" "}
-              <span className="fw-7">{`${siteContent.agent.name} - ${siteContent.agent.title}`}</span>. Website by
+              <span className="fw-7">{`${siteContent.agent.name} - ${siteContent.agent.title}`}</span>. Website by{' '}
               <a href="https://salesgenius.co/" target="_blank" rel="noopener noreferrer">SalesGenius</a>
             </p>
             {/* Added Legal Links */}

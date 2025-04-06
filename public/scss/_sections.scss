@@ -640,9 +640,10 @@
       padding: 34px 0;
       gap: 10px;
       img {
-        max-width: 108px;
+        max-width: 216px; /* Doubled from 108px */
         position: absolute;
         bottom: 0;
+        left: -20px; /* Shift image left */
       }
       .content {
         padding-left: 134px;

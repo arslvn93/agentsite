@@ -55,7 +55,7 @@ export default function Contact() {
                       <div className="sub text-color2">Office address</div>
                       <p className="text-1 text-color1">
                         {/* Placeholder Address - Add to siteContent if needed */}
-                        123 Main St, Brampton, ON L6X 1N9
+                        {siteContent.agent.address}
                       </p>
                     </div>
                   </li>

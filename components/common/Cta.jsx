@@ -11,8 +11,8 @@ export default function Cta() {
               <Image
                 alt=""
                 src={siteContent.agent.headshotNoBgImageSrc} // Use centralized no-bg headshot path
-                width={216}
-                height={312}
+                width={432}
+                height={624}
               />
               <div className="content">
                 <h4 className="text_white mb-8">

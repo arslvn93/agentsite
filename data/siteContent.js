@@ -12,6 +12,8 @@ const agentDetails = {
   firstName: "Arslan",
   /** @type {string} Agent's professional title (e.g., "Brampton Realtor"). Used in copyright, potentially titles. */
   title: "Mississauga Realtor",
+  /** @type {string} Agent's professional designation (e.g., "Real Estate Sales Representative", "Broker", "Realtor"). */
+  designation: "Real Estate Sales Representative",
   /** @type {string} Primary city/town served (e.g., "Brampton"). Used in descriptions, titles. */
   location: "Mississauga",
   /** @type {string} Broader region served (if applicable, e.g., "Peel Region"). Used in FAQ. */
@@ -24,6 +26,8 @@ const agentDetails = {
   email: "arslan@salesgenius.co", // Placeholder - Update with actual email
   /** @type {string} Agent's primary office address. */
   address: "123 Main St, Mississauga, ON L5B 2V9", // Placeholder - Update with actual address
+  /** @type {string} Name of the brokerage the agent is affiliated with. */
+  brokerageName: "REAL Broker",
   /** @type {string} File path for the standard agent headshot. Relative to /public. */
   headshotImageSrc: "/images/agent/headshot.png", // Placeholder - Ensure image exists at this path
   /** @type {string} File path for the agent headshot with no background. Relative to /public. */
@@ -55,9 +59,9 @@ export const siteContent = {
    */
   metadata: {
     /** @type {string} Text appended to page-specific titles (e.g., "| Mike Henry - Brampton Realtor"). */
-    baseTitleSuffix: "| {Agent Name} - {Agent Title}", // Placeholder - Constructed dynamically in layout/page
+    baseTitleSuffix: `| ${agentDetails.name} - ${agentDetails.title}`, // Dynamically constructed
     /** @type {string} Default site description for SEO. Concise summary of agent/service/location (~15-25 words). */
-    baseDescription: "{Agent Name}, your trusted realtor for buying and selling homes in {Location}. {Experience Years} years of local experience.", // Placeholder - Constructed dynamically in layout/page
+    baseDescription: `${agentDetails.name}, your trusted realtor for buying and selling homes in ${agentDetails.location}. ${agentDetails.experienceYears} years of local experience.`, // Dynamically constructed
   },
 
   /**
@@ -89,7 +93,7 @@ export const siteContent = {
       // Use the separately defined agentDetails here
       { src: agentDetails.headshotImageSrc, alt: `${agentDetails.name} - ${agentDetails.title}` }, // Use agent headshot
       { src: "/images/page-title/thumbs-main-1.jpg", alt: "Stylish Living Room Interior" },
-      { src: "/images/page-title/thumbs-main-2.jpg", alt: "{Location} Community Park" } // Placeholder - Location added dynamically if needed
+      { src: "/images/page-title/thumbs-main-2.jpg", alt: `${agentDetails.location} Community Park` } // Dynamically constructed
     ],
     /**
      * @description Images for the small pagination thumbnails.
@@ -97,15 +101,15 @@ export const siteContent = {
      */
     paginationImages: [
        { src: "/images/page-title/pagi-thumbs-1.jpg", alt: "Keys Exchange" },
-       { src: "/images/page-title/pagi-thumbs-2.jpg", alt: "{Location} Real Estate Icon" }, // Placeholder - Location added dynamically if needed
+       { src: "/images/page-title/pagi-thumbs-2.jpg", alt: `${agentDetails.location} Real Estate Icon` }, // Dynamically constructed
        { src: "/images/page-title/pagi-thumbs-3.jpg", alt: "Abstract Texture" }
     ],
     /** @type {string} Label for the first counter below hero text. */
     counter1Label: "Happy Clients", // Odometer component uses its own 'max' prop for the number.
     /** @type {string} Label for the second counter below hero text. */
-    counter2Label: "Years in {Location}", // Placeholder - Constructed dynamically in Hero6.jsx
+    counter2Label: `Years in ${agentDetails.location}`, // Dynamically construct the label
     /** @type {string} Placeholder text for the search input in the hero (~4-6 words). */
-    searchPlaceholder: "Interested in {Location} Real Estate?", // Placeholder - Constructed dynamically in Hero6.jsx
+    searchPlaceholder: `Interested in ${agentDetails.location} Real Estate?`, // Dynamically construct the placeholder
     /** @type {string} Text for the search button in the hero (~1-3 words). */
     searchButtonText: "Get Started Today"
   },
@@ -115,9 +119,9 @@ export const siteContent = {
    */
   about: {
     /** @type {string} Main heading for the section (~5-8 words). */
-    sectionTitle: "Experience and Dedication in {Location} Real Estate", // Placeholder - Constructed dynamically in About6.jsx
+    sectionTitle: `Experience and Dedication in ${agentDetails.location} Real Estate`, // Dynamically constructed
     /** @type {string} Detailed introduction to the agent (first person, ~3-5 sentences / 300-500 chars). */
-    mainParagraph: "Agent introduction paragraph text goes here. Describe experience, approach, and commitment.", // Placeholder - Constructed dynamically in About6.jsx
+    mainParagraph: `With ${agentDetails.experienceYears} years of dedicated experience in the ${agentDetails.location} market, I offer unparalleled local knowledge and a commitment to achieving your real estate goals. My client-first approach ensures clear communication and a seamless process whether you're buying or selling.`, // Dynamically constructed example
     /** @type {string} Label for the phone number link. */
     callLabel: "Call Agent", // Placeholder - Constructed dynamically in About6.jsx
     /** @type {string} Label for the email link. */
@@ -127,7 +131,7 @@ export const siteContent = {
     /** @type {string} Heading for the list of services/expertise. */
     expertiseTitle: "My Expertise:",
     /** @type {string} Introductory sentence before the expertise list (~1 sentence / 80-120 chars). */
-    expertiseIntro: "I offer specialized real estate services tailored to the {Location} market:", // Placeholder - Constructed dynamically in About6.jsx
+    expertiseIntro: `I offer specialized real estate services tailored to the ${agentDetails.location} market:`, // Dynamically constructed
     /** @type {string[]} List of key service areas (~3-5 items, ~2-4 words each). */
     expertiseItems: [
       "Residential Sales and Leasing",
@@ -148,7 +152,7 @@ export const siteContent = {
     /** @type {string} Main heading for the section (~4-6 words). */
     sectionTitle: "Client-Focused Real Estate Services",
     /** @type {string} Description elaborating on service philosophy (~2-3 sentences / 150-250 chars). */
-    introParagraph: "My focus is on providing exceptional, personalized service to every client. I leverage my {Experience Years} years of {Location} market knowledge to ensure you make informed decisions and achieve the best possible outcome.", // Placeholder - Constructed dynamically in Services6.jsx
+    introParagraph: `My focus is on providing exceptional, personalized service to every client. I leverage my ${agentDetails.experienceYears} years of ${agentDetails.location} market knowledge to ensure you make informed decisions and achieve the best possible outcome.`, // Dynamically constructed
     /** @type {string} Text for the button at the bottom of the section. */
     buttonText: "Explore My Services",
     /**
@@ -170,9 +174,9 @@ export const siteContent = {
     /** @type {string} Main heading for the section. */
     sectionTitle: "About The Agent", // Placeholder - Constructed dynamically in Team6.jsx
     /** @type {string} Short introductory text below the heading (~1 sentence / 50-100 chars). */
-    description: "Your trusted guide for buying and selling in {Location}.", // Placeholder - Constructed dynamically in Team6.jsx
+    description: `Your trusted guide for buying and selling in ${agentDetails.location}.`, // Dynamically constructed
     /** @type {string} Text displayed below the agent's name in the slider card (~5-8 words). */
-    agentDescription: "Your {Location} Realtor - {Experience Years} Years Experience", // Placeholder - Constructed dynamically in Team6.jsx
+    agentDescription: `Your ${agentDetails.location} Realtor - ${agentDetails.experienceYears} Years Experience`, // Dynamically constructed
     /** @type {string} Text for the button at the bottom. */
     buttonText: "Learn About My Approach"
     // Note: Team6.jsx component now uses siteContent.agent directly for name/image.
@@ -183,13 +187,14 @@ export const siteContent = {
    */
   projects: {
     /** @type {string} Main heading for the section. */
-    sectionTitle: "{Agent First Name}'s Client Success Stories", // Placeholder - Constructed dynamically in Projects6.jsx
+    sectionTitle: `${agentDetails.firstName}'s Client Success Stories`, // Dynamically constructed
     /** @type {string} Introductory text (~1-2 sentences / 100-200 chars). */
-    introParagraph: "See examples of how I've helped clients achieve their real estate goals in {Location}, delivering exceptional results with personalized service.", // Placeholder - Constructed dynamically in Projects6.jsx
+    introParagraph: `See examples of how I've helped clients achieve their real estate goals in ${agentDetails.location}, delivering exceptional results with personalized service.`, // Dynamically constructed
     /** @type {string[]} Placeholder titles for the grid items (~12 items, ~3-6 words each). */
+    // Dynamically update story titles containing {Location}
     storyTitles: [
-      "Successful {Location} Home Purchase", "Investment Property Secured", "Achieving Top Market Value", "Expert Negotiation Skills", "Client Success Story #5", // Placeholder - Location added dynamically if needed
-      "Seamless Property Sale in {Location}", "Navigating a Complex Transaction", "Relocation Made Easy", "Client Success Story #9", "Client Success Story #10", // Placeholder - Location added dynamically if needed
+      `Successful ${agentDetails.location} Home Purchase`, "Investment Property Secured", "Achieving Top Market Value", "Expert Negotiation Skills", "Client Success Story #5",
+      `Seamless Property Sale in ${agentDetails.location}`, "Navigating a Complex Transaction", "Relocation Made Easy", "Client Success Story #9", "Client Success Story #10",
       "First-Time Buyer Guidance", "Client Success Story #12"
     ],
     /** @type {string} Text displayed in the "empty" grid item (~1 sentence / 50-100 chars). */
@@ -207,16 +212,16 @@ export const siteContent = {
     /** @type {string} Main heading for the section. */
     sectionTitle: "What My Clients Say",
     /** @type {string} Introductory text (~1-2 sentences / 100-200 chars). */
-    introParagraph: "Building trust and achieving results for my clients in {Location} is my top priority. Hear directly from those I've had the pleasure of working with.", // Placeholder - Constructed dynamically in Testimonials6.jsx
+    introParagraph: `Building trust and achieving results for my clients in ${agentDetails.location} is my top priority. Hear directly from those I've had the pleasure of working with.`, // Dynamically constructed
     /**
      * @description Content for each testimonial slide.
      * @type {Array<{id: number, description: string, avatar: string, name: string, role: string}>}
      */
     items: [
       // Guidance: Provide 3 genuine-sounding testimonials (~2-4 sentences / 150-300 chars each). Use placeholder avatar paths.
-      { id: 1, description: "{Agent Name} made buying our first home in {Location} so easy! His knowledge and patience were invaluable. Highly recommended!", avatar: "/images/avatar/testimonials-3.jpg", name: "Sarah & Tom P.", role: "First-Time Homebuyers, {Location}" }, // Placeholder - Constructed dynamically in Testimonials6.jsx
-      { id: 2, description: "Selling our house with {Agent First Name} was a great experience. He got us a fantastic price and handled everything professionally. Thanks, {Agent First Name}!", avatar: "/images/avatar/testimonials-2.jpg", name: "David R.", role: "Home Seller, {Location}" }, // Placeholder - Constructed dynamically in Testimonials6.jsx
-      { id: 3, description: "As an investor, I rely on {Agent First Name}'s expertise of the {Location} market. He consistently finds great opportunities. A true professional.", avatar: "/images/avatar/testimonials-4.jpg", name: "Priya K.", role: "Real Estate Investor" } // Placeholder - Constructed dynamically in Testimonials6.jsx
+      { id: 1, description: `${agentDetails.name} made buying our first home in ${agentDetails.location} so easy! His knowledge and patience were invaluable. Highly recommended!`, avatar: "/images/avatar/testimonials-3.jpg", name: "Sarah & Tom P.", role: `First-Time Homebuyers, ${agentDetails.location}` }, // Dynamically constructed
+      { id: 2, description: `Selling our house with ${agentDetails.firstName} was a great experience. He got us a fantastic price and handled everything professionally. Thanks, ${agentDetails.firstName}!`, avatar: "/images/avatar/testimonials-2.jpg", name: "David R.", role: `Home Seller, ${agentDetails.location}` }, // Dynamically constructed
+      { id: 3, description: `As an investor, I rely on ${agentDetails.firstName}'s expertise of the ${agentDetails.location} market. He consistently finds great opportunities. A true professional.`, avatar: "/images/avatar/testimonials-4.jpg", name: "Priya K.", role: "Real Estate Investor" } // Dynamically constructed
     ]
   },
 
@@ -225,28 +230,28 @@ export const siteContent = {
    */
   blog: {
     /** @type {string} Heading for the blog section on the home page (`Blogs6.jsx`). */
-    sectionTitle: "{Agent First Name}'s {Location} Market Insights", // Placeholder - Constructed dynamically in Blogs6.jsx
+    sectionTitle: `${agentDetails.firstName}'s ${agentDetails.location} Market Insights`, // Dynamically constructed
     /** @type {string} Introductory text for the home page blog section (~1 sentence / 80-120 chars). */
-    introParagraph: "Stay informed with the latest news, tips, and trends relevant to the {Location} real estate market.", // Placeholder - Constructed dynamically in Blogs6.jsx
+    introParagraph: `Stay informed with the latest news, tips, and trends relevant to the ${agentDetails.location} real estate market.`, // Dynamically constructed
     /** @type {string} Title used on the main blog grid page (`Blogs2.jsx`). */
-    gridTitle: "{Agent Name}'s Blog", // Placeholder - Constructed dynamically in Blogs2.jsx
+    gridTitle: `${agentDetails.name}'s Blog`, // Dynamically constructed
     /** @type {string} Author name displayed on blog detail pages (`BlogDetails.jsx`). */
-    detailAuthor: "{Agent Name}", // Placeholder - Constructed dynamically in BlogDetails.jsx
+    detailAuthor: agentDetails.name, // Use dynamic value
     /** @type {string} Heading for the related posts section (`RelatedBlogs.jsx`). */
-    relatedTitle: "More Articles by {Agent First Name}", // Placeholder - Constructed dynamically in RelatedBlogs.jsx
+    relatedTitle: `More Articles by ${agentDetails.firstName}`, // Dynamically constructed
     /** @type {string} Heading for the newsletter signup in the blog sidebar (`BlogDetails.jsx`). */
     newsletterTitle: "Join My Newsletter",
     /** @type {string} Text encouraging newsletter signups (~1 sentence / 80-150 chars). */
-    newsletterDescription: "Sign up to receive {Location} market insights and tips directly from {Agent Name}.", // Placeholder - Constructed dynamically in BlogDetails.jsx
+    newsletterDescription: `Sign up to receive ${agentDetails.location} market insights and tips directly from ${agentDetails.name}.`, // Dynamically constructed
     /**
      * @description Content for blog post previews/listings. Used by `Blogs6.jsx`, `Blogs2.jsx`, `RelatedBlogs.jsx`.
      * @type {Array<{id: number, imageSrc: string, alt: string, tag: string, date: string, title: string, description: string}>}
      */
+    // Dynamically update blog post placeholders
     posts: [
-      // Guidance: Provide data for ~3 sample posts. Include title (~5-10 words), tag, date, and short description (1 sentence / ~100-150 chars).
-      { id: 4, imageSrc: "/images/blog/blog-grid-1.jpg", alt: "{Location} neighbourhood", tag: "Buying Tips", date: "October 15, 2024", title: "5 Tips for First-Time Homebuyers in {Location}", description: "Navigating the {Location} market for the first time? Here are key tips..." }, // Placeholders
-      { id: 5, imageSrc: "/images/blog/blog-grid-2.jpg", alt: "Condo building", tag: "Market Update", date: "October 10, 2024", title: "Understanding {Location}'s Condo Market Trends", description: "A look at recent trends and what they mean for condo buyers and sellers..." }, // Placeholder
-      { id: 6, imageSrc: "/images/blog/blog-grid-3.jpg", alt: "House exterior", tag: "Selling Tips", date: "October 5, 2024", title: "How to Prepare Your {Location} Home for a Quick Sale", description: "Maximize your home's appeal with these essential preparation steps..." } // Placeholder
+      { id: 4, imageSrc: "/images/blog/blog-grid-1.jpg", alt: `${agentDetails.location} neighbourhood`, tag: "Buying Tips", date: "October 15, 2024", title: `5 Tips for First-Time Homebuyers in ${agentDetails.location}`, description: `Navigating the ${agentDetails.location} market for the first time? Here are key tips...` },
+      { id: 5, imageSrc: "/images/blog/blog-grid-2.jpg", alt: "Condo building", tag: "Market Update", date: "October 10, 2024", title: `Understanding ${agentDetails.location}'s Condo Market Trends`, description: "A look at recent trends and what they mean for condo buyers and sellers..." },
+      { id: 6, imageSrc: "/images/blog/blog-grid-3.jpg", alt: "House exterior", tag: "Selling Tips", date: "October 5, 2024", title: `How to Prepare Your ${agentDetails.location} Home for a Quick Sale`, description: "Maximize your home's appeal with these essential preparation steps..." }
     ],
     /**
      * @description Placeholder content for the main body of a blog post on the detail page (`BlogDetails.jsx`).
@@ -261,9 +266,9 @@ export const siteContent = {
       paragraph3: "Further insights and concluding thoughts." // Optional third paragraph
     },
     /** @type {string} Title for the ad in the blog detail sidebar. */
-    sidebarAdTitle: "Ready to Buy or Sell in {Location}?", // Placeholder - Constructed dynamically in BlogDetails.jsx
+    sidebarAdTitle: `Ready to Buy or Sell in ${agentDetails.location}?`, // Dynamically constructed
     /** @type {string} Description for the ad in the blog detail sidebar. */
-    sidebarAdText: "Connect with {Agent Name} - I know the market inside out and can help you achieve your goals.", // Placeholder - Constructed dynamically in BlogDetails.jsx
+    sidebarAdText: `Connect with ${agentDetails.name} - I know the market inside out and can help you achieve your goals.`, // Dynamically constructed
     /** @type {string} Button text for the ad in the blog detail sidebar. */
     sidebarAdButton: "Contact Agent", // Placeholder - Constructed dynamically in BlogDetails.jsx
   },
@@ -290,10 +295,10 @@ export const siteContent = {
         title: "About The Agent & Services", // Placeholder
         idPrefix: "faq-serv", // Unique prefix for accordion targeting
         questions: [
-          { id: "faq-q1", question: "What areas do you specialize in?", answer: "I specialize in residential real estate throughout {Location} and the surrounding {Region}. With {Experience Years} years focused specifically on this area, I have deep knowledge of its diverse neighbourhoods and market dynamics." }, // Placeholder - Constructed dynamically in Faqs.jsx
+          { id: "faq-q1", question: "What areas do you specialize in?", answer: `I specialize in residential real estate throughout ${agentDetails.location} and the surrounding ${agentDetails.region}. With ${agentDetails.experienceYears} years focused specifically on this area, I have deep knowledge of its diverse neighbourhoods and market dynamics.` }, // Dynamically constructed
           { id: "faq-q2", question: "What services do you offer for buyers?", answer: "I provide comprehensive support for buyers, including personalized property searches based on your needs, market analysis, expert negotiation, guidance through inspections and financing, and ensuring a smooth closing process." },
           { id: "faq-q3", question: "How do you help home sellers?", answer: "For sellers, I offer strategic pricing analysis, professional home staging advice, targeted marketing campaigns across multiple platforms, skilled negotiation to get you the best price, and management of the entire selling process from listing to closing." },
-          { id: "faq-q4", question: "What makes you different from other realtors?", answer: "My {Experience Years} years of dedicated experience in {Location}, combined with a client-first approach built on communication and trust, sets me apart. I'm committed to providing personalized service and achieving outstanding results for every client I work with." } // Placeholder - Constructed dynamically in Faqs.jsx
+          { id: "faq-q4", question: "What makes you different from other realtors?", answer: `My ${agentDetails.experienceYears} years of dedicated experience in ${agentDetails.location}, combined with a client-first approach built on communication and trust, sets me apart. I'm committed to providing personalized service and achieving outstanding results for every client I work with.` } // Dynamically constructed
         ]
       },
       {
@@ -308,7 +313,7 @@ export const siteContent = {
         title: "Getting Started",
         idPrefix: "faq-start",
         questions: [
-          { id: "faq-q7", question: "How do I get started working with you?", answer: "The best way to start is by scheduling a free, no-obligation consultation. We can discuss your specific needs, goals, and how I can best assist you in the {Location} real estate market. Use the contact form on this page or call me directly!" } // Placeholder - Constructed dynamically in Faqs.jsx
+          { id: "faq-q7", question: "How do I get started working with you?", answer: `The best way to start is by scheduling a free, no-obligation consultation. We can discuss your specific needs, goals, and how I can best assist you in the ${agentDetails.location} real estate market. Use the contact form on this page or call me directly!` } // Dynamically constructed
         ]
       }
     ]
@@ -325,7 +330,7 @@ export const siteContent = {
     /** @type {string} Text for the submit button on the main contact form. */
     formButtonText: "Send Agent a Message", // Placeholder - Constructed dynamically in Contact.jsx / Contact6.jsx
     /** @type {string} Heading in the secondary section on the contact page. */
-    aboutTitle: "Providing the most suitable and quality real estate guidance in {Location}.", // Placeholder - Constructed dynamically in contact/About.jsx
+    aboutTitle: `Providing the most suitable and quality real estate guidance in ${agentDetails.location}.`, // Dynamically constructed
     /** @type {string} Text below the secondary heading on the contact page. */
     aboutDescription: "Ready to take the next step? Contact me today for a personalized consultation."
   },
@@ -339,7 +344,7 @@ export const siteContent = {
     /** @type {string} First paragraph in the "Facts" section. */
     factsDescription1: "The home loan process can feel overwhelming, but I will help you stay informed throughout, from pre-approval to closing. The first step is consulting with a mortgage specialist. If you don't have one, I partner with some of the best lenders in the industry and would be happy to introduce you.",
     /** @type {string} Second paragraph in the "Facts" section. */
-    factsDescription2: "I stand ready to serve you as your dedicated {Location} real estate agent.", // Placeholder - Constructed dynamically in LoanProcess/Facts.jsx
+    factsDescription2: `I stand ready to serve you as your dedicated ${agentDetails.location} real estate agent.`, // Dynamically constructed
     /** @type {string} Button text in the "Facts" section. */
     factsButtonText: "About The Agent", // Placeholder - Constructed dynamically in LoanProcess/Facts.jsx
     /** @type {string} Label for the first counter in the "Facts" section. */
@@ -349,7 +354,7 @@ export const siteContent = {
     /** @type {string} Label for the third counter. */
     factsCounter3Label: "Properties Sold",
     /** @type {string} Heading for the "Process" section. */
-    processTitle: "Selling Your Home With {Agent Name}", // Placeholder - Constructed dynamically in LoanProcess/Process.jsx
+    processTitle: `Selling Your Home With ${agentDetails.name}`, // Dynamically constructed
     /** @type {string} Introductory text for the "Process" section. */
     processDescription: "I'll get to know you to understand your selling goals, and explain the selling process so you know what to expect.",
     /** @type {string} Text used below each of the 3 process steps. */
@@ -373,7 +378,7 @@ export const siteContent = {
    */
   common: {
     /** @type {string} Title for the main Call To Action component (`Cta.jsx`). */
-    ctaTitle: "Looking for a {Location} Real Estate Expert?", // Placeholder - Constructed dynamically in Cta.jsx
+    ctaTitle: `Looking for a ${agentDetails.location} Real Estate Expert?`, // Dynamically constructed
     /** @type {string} Description for the main CTA component. */
     ctaDescription: "Whether you're buying or selling, I'll help you achieve the best possible outcome.",
     /** @type {string} Button text for the main CTA component. */
