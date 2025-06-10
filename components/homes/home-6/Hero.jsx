@@ -54,7 +54,7 @@ export default function Hero() {
                           <div className="content effect-item effect-up effect-3">
                             <p className="text-1">{siteContent.hero.slides[0].description}</p>
                             <a
-                              href="#"
+                              href="/contact"
                               className="tf-btn bg-color-primary pd-26 rounded-cycle height-2"
                             >
                               {siteContent.hero.slides[0].buttonText} {/* Use button text from siteContent */}
@@ -262,6 +262,7 @@ export default function Hero() {
                 <button
                   className="tf-btn pd-26 bg-color-primary rounded-cycle"
                   type="submit"
+                  onClick={() => window.location.href='/contact'}
                 >
                   <span className="md-hide">{siteContent.hero.searchButtonText}</span>
                   <i className="icon-MagnifyingGlass" />

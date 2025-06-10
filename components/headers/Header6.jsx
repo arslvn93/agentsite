@@ -26,7 +26,7 @@ export default function Header6() {
                   <div className="btn-add">
                     <Link
                       className="tf-btn style-border border2 pd-23"
-                      href={`/add-property`}
+                      href={`/contact`}
                     >
                       {/* Assuming a generic CTA, could add specific one to siteContent.common */}
                       Book a Consultation

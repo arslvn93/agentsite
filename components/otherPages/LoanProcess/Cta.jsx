@@ -28,7 +28,7 @@ export default function Cta() {
                   </p>
                 </div>
                 <a
-                  href="#"
+                  href="/contact"
                   className="tf-btn style-2 fw-6 pd-25 wow animate__fadeInUp animate__animated"
                   data-wow-duration="1s"
                   data-wow-delay="0s"

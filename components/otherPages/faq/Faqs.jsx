@@ -1,9 +1,20 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { siteContent } from "@/data/siteContent"; // Import centralized content
+import { siteContent } from "@/data/siteContent";
+import useForm from "../../../hooks/useForm";
 
 export default function Faqs() {
+  const { formData, formState, formError, handleChange, handleSubmit } = useForm(
+    {
+      name: "",
+      message: "",
+      formName: "FAQ Page Contact Form",
+    },
+    siteContent.agent.email
+  );
+
   // New Q&A Data for Mike Henry, grouped by category
   const faqCategories = [
     {
@@ -108,7 +119,7 @@ export default function Faqs() {
           <div className="col-xl-4 col-lg-5">
             <div className="tf-sidebar sticky-sidebar">
               {/* Contact Form */}
-              <form className="form-contact-seller mb-30">
+              <form className="form-contact-seller mb-30" onSubmit={handleSubmit}>
                 <h4 className="heading-title mb-30">{`Contact ${siteContent.agent.name}`}</h4>
                 <div className="seller-info">
                   <div className="avartar">
@@ -141,6 +152,8 @@ export default function Faqs() {
                     name="name"
                     id="name"
                     required
+                    value={formData.name}
+                    onChange={handleChange}
                   />
                 </fieldset>
                 <fieldset className="mb-30">
@@ -151,12 +164,21 @@ export default function Faqs() {
                     placeholder="How can I help you?" // Updated placeholder
                     id="message"
                     required
-                    defaultValue={""}
+                    value={formData.message}
+                    onChange={handleChange}
                   />
                 </fieldset>
-                <button type="submit" className="tf-btn bg-color-primary w-full"> {/* Changed to button */}
-                  Send message
+                <button type="submit" className="tf-btn bg-color-primary w-full" disabled={formState === 'submitting'}>
+                  {formState === 'submitting' ? 'Submitting...' : 'Send message'}
                 </button>
+                {formState === 'success' && (
+                  <p className="text-success">Your message has been sent successfully!</p>
+                )}
+                {formState === 'error' && (
+                  <p className="text-error">
+                    {formError || 'An error occurred. Please try again.'}
+                  </p>
+                )}
               </form>
 
               {/* Sidebar Ad */}

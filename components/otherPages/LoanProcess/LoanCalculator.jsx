@@ -1,9 +1,69 @@
+"use client";
 import DropdownSelect from "@/components/common/DropdownSelect";
 import Image from "next/image";
-import React from "react";
-import { siteContent } from "@/data/siteContent"; // Import centralized content
+import React, { useState, useEffect } from "react";
+import { siteContent } from "@/data/siteContent";
+import useForm from "../../../hooks/useForm";
 
 export default function LoanCalculator() {
+  const { formData, formState, formError, handleChange, handleSubmit, setFormData } = useForm(
+    {
+      totalAmount: "1000",
+      downPayment: "200",
+    interestRate: "5",
+    amortizationPeriod: "30",
+    propertyTax: "3000",
+    homeInsurance: "1000",
+    formName: "Loan Calculator",
+    },
+    siteContent.agent.email
+  );
+
+  const [monthlyPayment, setMonthlyPayment] = useState(0);
+
+  const handleAmortizationChange = (value) => {
+    handleChange({ target: { name: "amortizationPeriod", value } });
+  };
+
+  const calculateMonthlyPayment = () => {
+    const P = parseFloat(formData.totalAmount) - parseFloat(formData.downPayment);
+    const r = parseFloat(formData.interestRate) / 100 / 12;
+    const n = parseFloat(formData.amortizationPeriod) * 12;
+    const tax = parseFloat(formData.propertyTax) / 12;
+    const insurance = parseFloat(formData.homeInsurance) / 12;
+
+    if (P > 0 && r > 0 && n > 0) {
+      const M = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      setMonthlyPayment(M + tax + insurance);
+    } else {
+      setMonthlyPayment(0);
+    }
+  };
+
+  const handleCalculate = (e) => {
+    e.preventDefault();
+    calculateMonthlyPayment();
+    handleSubmit(e);
+  };
+  
+  const handleStartOver = (e) => {
+    e.preventDefault();
+    setFormData({
+      totalAmount: "1000",
+      downPayment: "200",
+      interestRate: "5",
+      amortizationPeriod: "30",
+      propertyTax: "3000",
+      homeInsurance: "1000",
+      formName: "Loan Calculator",
+    });
+    setMonthlyPayment(0);
+  };
+
+  useEffect(() => {
+    calculateMonthlyPayment();
+  }, [formData]);
+
   return (
     <section className="section-calculate">
       <div className="tf-container">
@@ -20,7 +80,7 @@ export default function LoanCalculator() {
                   src="/images/section/section-calculate.jpg"
                 />
               </div>
-              <form className="form-pre-approved">
+              <form className="form-pre-approved" onSubmit={handleCalculate}>
                 <div className="heading-section mb-48">
                   <h2
                     className="title wow animate__fadeInUp animate__animated"
@@ -42,21 +102,14 @@ export default function LoanCalculator() {
                     <label className="text-1 fw-6 mb-12" htmlFor="amount">
                       Total Amount
                     </label>
-                    <input type="number" id="amount" placeholder={1000} />
+                    <input type="number" id="amount" name="totalAmount" value={formData.totalAmount} onChange={handleChange} />
                   </fieldset>
                   <div className="wrap-input">
                     <fieldset className="payment">
                       <label className="text-1 fw-6 mb-12" htmlFor="payment">
                         Down Payment
                       </label>
-                      <input type="number" id="payment" placeholder={2000} />
-                    </fieldset>
-                    <fieldset className="percent">
-                      <input
-                        className="input-percent"
-                        type="text"
-                        defaultValue="20%"
-                      />
+                      <input type="number" id="payment" name="downPayment" value={formData.downPayment} onChange={handleChange} />
                     </fieldset>
                   </div>
                 </div>
@@ -66,81 +119,59 @@ export default function LoanCalculator() {
                       className="text-1 fw-6 mb-12"
                       htmlFor="interest-rate"
                     >
-                      Interest Rate
+                      Interest Rate (%)
                     </label>
-                    <input type="number" id="interest-rate" placeholder={0} />
+                    <input type="number" id="interest-rate" name="interestRate" value={formData.interestRate} onChange={handleChange} />
                   </fieldset>
                   <div className="select">
                     <label className="text-1 fw-6 mb-12">
-                      Amortization Period (months)
+                      Amortization Period (years)
                     </label>
-                    <div className="nice-select" tabIndex={0}>
-                      <span className="current">
-                        Select amortization period
-                      </span>
-                      <ul className="list">
-                        <li data-value="" className="option selected">
-                          Select amortization period
-                        </li>
-                        <li data-value="1 month" className="option">
-                          1 month
-                        </li>
-                        <li data-value="2 months" className="option">
-                          2 months
-                        </li>
-                        <li data-value="3 months" className="option">
-                          3 months
-                        </li>
-                        <li data-value="4 months" className="option">
-                          4 months
-                        </li>
-                        <li data-value="5 months" className="option">
-                          5 months
-                        </li>
-                        <li data-value="6 months" className="option">
-                          6 months
-                        </li>
-                      </ul>
-                    </div>
                     <DropdownSelect
                       options={[
-                        "Select amortization period",
-                        "1 month",
-                        "2 month",
-                        "3 month",
-                        "4 month",
-                        "5 month",
-                        "6 month",
-                        "8 month",
+                        "15",
+                        "20",
+                        "25",
+                        "30",
                       ]}
+                      selectedValue={formData.amortizationPeriod}
+                      onChange={handleAmortizationChange}
                     />
                   </div>
                 </div>
                 <div className="cols">
                   <fieldset>
                     <label className="text-1 fw-6 mb-12" htmlFor="tax">
-                      Property Tax
+                      Property Tax (yearly)
                     </label>
-                    <input type="number" id="tax" placeholder="$3000" />
+                    <input type="number" id="tax" name="propertyTax" value={formData.propertyTax} onChange={handleChange} />
                   </fieldset>
                   <fieldset>
                     <label className="text-1 fw-6 mb-12" htmlFor="insurance">
-                      Home Insurance
+                      Home Insurance (yearly)
                     </label>
-                    <input type="number" id="insurance" placeholder="$3000" />
+                    <input type="number" id="insurance" name="homeInsurance" value={formData.homeInsurance} onChange={handleChange} />
                   </fieldset>
                 </div>
                 <p className="text-1">
-                  Your estimated monthly payment: <span>8000</span>
+                  Your estimated monthly payment: <span>${monthlyPayment.toFixed(2)}</span>
                 </p>
                 <div className="wrap-btn">
-                  <a href="#" className="tf-btn bg-color-primary pd-6 fw-7">
-                    Calculate now
-                  </a>
-                  <a href="#" className="tf-btn style-border pd-7">
+                  <button type="submit" className="tf-btn bg-color-primary pd-6 fw-7" disabled={formState === 'submitting'}>
+                    {formState === 'submitting' ? 'Submitting...' : 'Calculate and Submit'}
+                  </button>
+                  <a href="#" className="tf-btn style-border pd-7" onClick={handleStartOver}>
                     Start over
                   </a>
                 </div>
+                {formState === 'success' && (
+                  <p className="text-success">Your submission has been received!</p>
+                )}
+                {formState === 'error' && (
+                  <p className="text-error">
+                    {formError || 'An error occurred. Please try again.'}
+                  </p>
+                )}
               </form>
             </div>
           </div>

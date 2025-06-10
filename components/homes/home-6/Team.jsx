@@ -73,7 +73,7 @@ export default function Team() {
             </div> {/* Closing centering div */}
             {/* Removed Swiper pagination div */}
             <a
-              href="#"
+              href="/contact"
               className="tf-btn bg-color-primary height-1 pd-25 rounded-cycle mx-auto btn-border"
             >
               {siteContent.aboutMike.buttonText} <i className="icon-arrow-right-3" />

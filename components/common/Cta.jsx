@@ -22,7 +22,7 @@ export default function Cta() {
                   {siteContent.common.ctaDescription}
                 </p>
               </div>
-              <a href="#" className="tf-btn style-2 fw-6">
+              <a href="/contact" className="tf-btn style-2 fw-6">
                 {`Contact ${siteContent.agent.firstName} Today`}
                 <i className="icon-MagnifyingGlass fw-6" />
               </a>

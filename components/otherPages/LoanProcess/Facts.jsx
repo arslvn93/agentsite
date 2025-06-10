@@ -32,7 +32,7 @@ export default function Facts() {
                   {`I stand ready to serve you as your dedicated ${siteContent.agent.location} real estate agent.`}
                 </p>
                 <a
-                  href="#"
+                  href="/contact"
                   className="tf-btn bg-color-primary fw-7 pd-12 wow animate__fadeInUp animate__animated"
                   data-wow-duration="1s"
                   data-wow-delay="0s"

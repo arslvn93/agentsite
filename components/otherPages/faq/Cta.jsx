@@ -36,13 +36,13 @@ export default function Cta() {
                 </div>
                 <div className="wrap-btn">
                   <a
-                    href="#"
+                    href="/contact"
                     className="tf-btn style-border color-white pd-14 fw-6"
                   >
                     {/* Using a generic button text, could add specific one to siteContent.faq if needed */}
                     {`Contact ${siteContent.agent.firstName}`}
                   </a>
-                  <a href="#" className="tf-btn bg-color-primary pd-15 fw-6">
+                  <a href="/contact" className="tf-btn bg-color-primary pd-15 fw-6">
                     <svg
                       width={20}
                       height={20}

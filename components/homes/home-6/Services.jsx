@@ -83,7 +83,7 @@ export default function Services() {
               <div className="sw-pagination sw-pagination-layout text-center mt-20 spd16" />
             </Swiper>
             <a
-              href="#"
+              href="/contact"
               className="tf-btn bg-color-primary height-1 pd-25 rounded-cycle mx-auto btn-border"
             >
               {siteContent.services.buttonText} <i className="icon-arrow-right-3" />

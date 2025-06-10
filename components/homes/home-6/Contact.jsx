@@ -1,8 +1,21 @@
 "use client";
 import React from "react";
 import SplitTextAnimation from "@/components/common/SplitTextAnimation";
-import { siteContent } from "@/data/siteContent"; // Import centralized content
+import { siteContent } from "@/data/siteContent";
+import useForm from "../../../hooks/useForm";
+
 export default function Contact() {
+  const { formData, formState, formError, handleChange, handleSubmit } = useForm(
+    {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      formName: "Home Page Contact Form",
+    },
+    siteContent.agent.email
+  );
+
   return (
     <section className="section-contact style-1 tf-spacing-7">
       <div className="tf-container">
@@ -12,10 +25,10 @@ export default function Contact() {
               <div className="box-contact style-1">
                 <div className="heading-section mb-54 gap-33">
                   <div className="title text-white text-display-4 split-text effect-right">
-                    <SplitTextAnimation text={"I Would Love to Hear From You"} /> {/* Keep generic title */}
+                    <SplitTextAnimation text={"I Would Love to Hear From You"} />
                   </div>
                   <p className="text-1 text-color1 wow animate__fadeInUp animate__animated">
-                    {siteContent.contactPage.formDescription} {/* Assuming reuse from contact page */}
+                    {siteContent.contactPage.formDescription}
                   </p>
                 </div>
                 <ul className="list-info">
@@ -54,7 +67,6 @@ export default function Contact() {
                     <div className="content">
                       <div className="sub text-color2">Office address</div>
                       <p className="text-1 text-color1">
-                        {/* Placeholder Address - Add to siteContent if needed */}
                         {siteContent.agent.address}
                       </p>
                     </div>
@@ -190,14 +202,12 @@ export default function Contact() {
             <div className="right">
               <form
                 className="form-get-in-touch style-2"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleSubmit}
               >
                 <h2 className="text_white title-form fw-5 mb-0">
-                  {/* Keeping this specific title for now, could centralize */}
                   Request a call back
                 </h2>
                 <p className="text-1 text-color1 fw-3">
-                  {/* Keeping this specific description for now, could centralize */}
                   Tell me about your goals, and I'll explain how I can help you achieve them.
                 </p>
                 <div className="grid-2">
@@ -215,6 +225,8 @@ export default function Contact() {
                       name="name"
                       id="name3"
                       required
+                      value={formData.name}
+                      onChange={handleChange}
                     />
                   </fieldset>
                   <fieldset>
@@ -225,12 +237,14 @@ export default function Contact() {
                       Email
                     </label>
                     <input
-                      type="text"
+                      type="email"
                       className="form-control"
                       placeholder="Email"
-                      name="Your email"
+                      name="email"
                       id="email3"
                       required
+                      value={formData.email}
+                      onChange={handleChange}
                     />
                   </fieldset>
                 </div>
@@ -248,6 +262,8 @@ export default function Contact() {
                     name="phone"
                     id="phone"
                     required
+                    value={formData.phone}
+                    onChange={handleChange}
                   />
                 </fieldset>
                 <fieldset>
@@ -264,18 +280,28 @@ export default function Contact() {
                     placeholder="Your message"
                     id="message3"
                     required
-                    defaultValue={""}
+                    value={formData.message}
+                    onChange={handleChange}
                   />
                 </fieldset>
                 <div className="wrap-btn">
-                  <a
-                    href="#"
+                  <button
+                    type="submit"
                     className="tf-btn bg-color-primary pd-26 btn-border rounded-cycle"
+                    disabled={formState === 'submitting'}
                   >
-                    {`Send ${siteContent.agent.firstName} a Message`} {/* Construct button text dynamically */}
+                    {formState === 'submitting' ? 'Submitting...' : `Send ${siteContent.agent.firstName} a Message`}
                     <i className="icon-arrow-up-right" />
-                  </a>
+                  </button>
                 </div>
+                {formState === 'success' && (
+                  <p className="text-success">Your message has been sent successfully!</p>
+                )}
+                {formState === 'error' && (
+                  <p className="text-error">
+                    {formError || 'An error occurred. Please try again.'}
+                  </p>
+                )}
               </form>
             </div>
           </div>

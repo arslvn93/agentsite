@@ -49,6 +49,7 @@ export default function About() {
                 <a
                   className="tf-btn bg-color-primary pd-25 rounded-cycle height-1 wow animate__fadeInUp animate__animated"
                   data-wow-delay="0.3s"
+                  href="/contact"
                 >
                   {`Learn More About ${siteContent.agent.firstName}`} <i className="icon-arrow-right-3" />
                 </a>
