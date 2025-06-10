@@ -7,6 +7,10 @@ import { siteContent } from "@/data/siteContent"; // Import centralized content
 // Removed blogs import
 
 export default function BlogDetails({ blog }) {
+  const postDetails = siteContent.blog.postDetails.find(
+    (post) => post.id === blog.id
+  );
+
   return (
     <section className="section-blog-details">
       <div className="tf-container">
@@ -14,7 +18,9 @@ export default function BlogDetails({ blog }) {
           {/* Changed column width and removed sidebar */}
           <div className="col-lg-12">
             <div className="heading">
-              <h2 className="title-heading">{blog.title.replace('{Location}', siteContent.agent.location)}</h2>
+              <h2 className="title-heading">
+                {blog.title.replace("{Location}", siteContent.agent.location)}
+              </h2>
               <div className="meta flex">
                 <div className="meta-item flex align-center">
                   <svg
@@ -61,71 +67,50 @@ export default function BlogDetails({ blog }) {
                   <p>0 comment</p>
                 </div>
                 <div className="meta-item flex align-center">
-                  <p>26 August, 2024</p>
+                  <p>{blog.date}</p>
                 </div>
               </div>
             </div>
-            {/* Removed placeholder paragraph1 - Assuming blog.content will be passed */}
-            {/* If blog prop doesn't contain full content, this needs adjustment */}
             <p className="fw-5 text-color-heading mb-30">
-              {blog.fullContent || siteContent.blog.detailPlaceholder.paragraph1} {/* Example fallback */}
+              {postDetails?.paragraph1}
             </p>
             <div className="image-wrap mb-30">
               <Image
                 className="lazyload"
-                data-src="/images/blog/blog-details.jpg"
-                alt=""
+                data-src={blog.imageSrc}
+                alt={blog.alt}
                 width={840}
                 height={473}
-                src="/images/blog/blog-details.jpg"
+                src={blog.imageSrc}
               />
             </div>
-            <div className="wrap-content mb-20">
-              <h4 className="mb-18">Understanding Housing Stocks</h4>
-              {/* Removed placeholder paragraph2 and hardcoded text */}
-              {/* Assuming blog.content or similar field exists in the blog object */}
-              <p className="mb-20">
-                 {blog.fullContentSection2 || siteContent.blog.detailPlaceholder.paragraph2} {/* Example fallback */}
-              </p>
-
+            <div className="wrap-content mb-20" style={{ fontSize: '20px', lineHeight: '1.7' }}>
+              {postDetails?.paragraph2.split('\n').map((paragraph, index) => (
+                <p className="mb-20" key={index}>{paragraph}</p>
+              ))}
             </div>
             <div className="quote">
-              <p>
-                “{blog.quote || siteContent.blog.detailPlaceholder.quote}” {/* Example fallback */}
-              </p>
-              <p className="author">
-                {blog.quoteAuthor || siteContent.blog.detailPlaceholder.quoteAuthor} {/* Example fallback */}
-              </p>
+              <p>“{postDetails?.quote}”</p>
+              <p className="author">{postDetails?.quoteAuthor}</p>
             </div>
-            <div className="group-image">
-              <div className="image-wrap">
-                <Image
-                  className="lazyload"
-                  data-src="/images/blog/blog-details-1.jpg"
-                  alt=""
-                  width={410}
-                  height={273}
-                  src="/images/blog/blog-details-1.jpg"
-                />
-              </div>
-              <div className="image-wrap">
-                <Image
-                  className="lazyload"
-                  data-src="/images/blog/blog-details-2.jpg"
-                  alt=""
-                  width={410}
-                  height={273}
-                  src="/images/blog/blog-details-2.jpg"
-                />
-              </div>
+            <div className="wrap-content mb-30" style={{ fontSize: '20px', lineHeight: '1.7' }}>
+              {postDetails?.paragraph3.split('\n').map((paragraph, index) => (
+                <p className="mb-22" key={index}>{paragraph}</p>
+              ))}
             </div>
-            <div className="wrap-content mb-30">
-              <h4 className="mb-16 font-manrope">Identify Emerging Trends</h4>
-              {/* Removed placeholder paragraph3 */}
-              {/* Assuming blog.content or similar field exists */}
-              <p className="mb-22">
-                 {blog.fullContentSection3 || siteContent.blog.detailPlaceholder.paragraph3} {/* Example fallback */}
-              </p>
+            <div className="wrap-content mb-30" style={{ fontSize: '20px', lineHeight: '1.7' }}>
+              {postDetails?.paragraph4.split('\n').map((paragraph, index) => (
+                <p className="mb-22" key={index}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="quote">
+              <p>“{postDetails?.quote2}”</p>
+              <p className="author">{postDetails?.quoteAuthor2}</p>
+            </div>
+            <div className="wrap-content mb-30" style={{ fontSize: '20px', lineHeight: '1.7' }}>
+              {postDetails?.paragraph5.split('\n').map((paragraph, index) => (
+                <p className="mb-22" key={index}>{paragraph}</p>
+              ))}
             </div>
             <div className="tag-wrap flex justify-between items-center">
               <div className="tags">
